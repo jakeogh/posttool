@@ -79,13 +79,13 @@ def cli(
                 # curl -F'file=@yourfile.png' http://0x0.st
                 result = sh.curl("-F", f"file=@{path.as_posix()}", "http://0x0.st")
 
-        output(
-            result,
-            reason=_path,
-            dict_input=dict_input,
-            tty=tty,
-            verbose=verbose,
-        )
+            output(
+                result,
+                reason=_path,
+                dict_input=dict_input,
+                tty=tty,
+                verbose=verbose,
+            )
 
 
 if __name__ == "__main__":
