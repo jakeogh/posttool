@@ -79,17 +79,18 @@ def cli(
             ic(index, path)
 
         path_file_type = classify(path, verbose=verbose)
+        ic(path_file_type)
         if path_file_type == "text":
             if yn_question(f"confirm posting {path}", verbose=verbose):
                 sh.wgetpaste(path)
 
-        output(
-            path_file_type,
-            reason=_path,
-            dict_input=dict_input,
-            tty=tty,
-            verbose=verbose,
-        )
+        # output(
+        #    path_file_type,
+        #    reason=_path,
+        #    dict_input=dict_input,
+        #    tty=tty,
+        #    verbose=verbose,
+        # )
 
 
 if __name__ == "__main__":
