@@ -19,7 +19,6 @@
 # pylint: disable=E1101  # no member for base
 # pylint: disable=W0201  # attribute defined outside __init__
 # pylint: disable=R0916  # Too many boolean expressions in if statement
-# pylint: disable=C0305  # Trailing newlines editor should fix automatically, pointless warning
 
 
 import os
@@ -27,17 +26,17 @@ from pathlib import Path
 from signal import SIG_DFL
 from signal import SIGPIPE
 from signal import signal
-# from typing import Iterable
-# from typing import Optional
 from typing import Sequence
 from typing import Union
 
 import click
+import sh
 from asserttool import ic
 from classify import classify
 from clicktool import click_add_options
 from clicktool import click_global_options
 from clicktool import tv
+from inputtool import yn_question
 from mptool import output
 from mptool import unmp
 
@@ -80,6 +79,9 @@ def cli(
             ic(index, path)
 
         path_file_type = classify(path, verbose=verbose)
+        if path_file_type == "text":
+            if yn_question(f"confirm posting {path}", verbose=verbose):
+                sh.wgetpaste(path)
 
         output(
             path_file_type,
