@@ -61,15 +61,7 @@ def cli(
         verbose_inf=verbose_inf,
     )
 
-    if paths:
-        iterator = paths
-    else:
-        iterator = unmp(
-            valid_types=[
-                bytes,
-            ],
-            verbose=verbose,
-        )
+    iterator = paths
     del paths
 
     index = 0
