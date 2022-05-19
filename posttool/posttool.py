@@ -72,17 +72,20 @@ def cli(
 
         path_file_type = classify(path, verbose=verbose)[0]
         ic(path_file_type)
-        if path_file_type == "text":
-            if yn_question(f"confirm posting {path}", verbose=verbose):
-                sh.wgetpaste(path)
+        if yn_question(f"confirm posting {path}", verbose=verbose):
+            if path_file_type == "text":
+                result = sh.wgetpaste(path)
+            elif path_file_type == "image":
+                # curl -F'file=@yourfile.png' http://0x0.st
+                result = sh.curl("-F", f"file=@{path.as_posix()}", "http://0x0.st")
 
-        # output(
-        #    path_file_type,
-        #    reason=_path,
-        #    dict_input=dict_input,
-        #    tty=tty,
-        #    verbose=verbose,
-        # )
+        output(
+            result,
+            reason=_path,
+            dict_input=dict_input,
+            tty=tty,
+            verbose=verbose,
+        )
 
 
 if __name__ == "__main__":
