@@ -78,7 +78,7 @@ def cli(
         if verbose:
             ic(index, path)
 
-        path_file_type = classify(path, verbose=verbose)
+        path_file_type = classify(path, verbose=verbose)[0]
         ic(path_file_type)
         if path_file_type == "text":
             if yn_question(f"confirm posting {path}", verbose=verbose):
