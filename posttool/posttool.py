@@ -22,6 +22,7 @@
 
 
 import os
+import sys
 from pathlib import Path
 from signal import SIG_DFL
 from signal import SIGPIPE
@@ -77,7 +78,9 @@ def cli(
                 result = sh.wgetpaste(path)
             elif path_file_type == "image":
                 # curl -F'file=@yourfile.png' http://0x0.st
-                result = sh.curl("-F", f"file=@{path.as_posix()}", "http://0x0.st")
+                result = sh.curl(
+                    "-F", f"file=@{path.as_posix()}", "http://0x0.st", _err=sys.stdout
+                )
 
             output(
                 result,
