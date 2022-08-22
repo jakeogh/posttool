@@ -51,7 +51,7 @@ def cli(
     paths: Sequence[str],
     verbose: bool | int | float,
     verbose_inf: bool,
-    dict_input: bool,
+    dict_output: bool,
 ) -> None:
 
     tty, verbose = tv(
@@ -83,7 +83,7 @@ def cli(
             output(
                 result,
                 reason=_path,
-                dict_input=dict_input,
+                dict_output=dict_output,
                 tty=tty,
                 verbose=verbose,
             )
