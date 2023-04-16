@@ -48,12 +48,11 @@ signal(SIGPIPE, SIG_DFL)
 @click.pass_context
 def cli(
     ctx,
-    paths: Sequence[str],
-    verbose: bool | int | float,
+    paths: tuple[str, ...],
     verbose_inf: bool,
     dict_output: bool,
+    verbose: bool | int | float = False,
 ) -> None:
-
     tty, verbose = tv(
         ctx=ctx,
         verbose=verbose,
@@ -87,8 +86,3 @@ def cli(
                 tty=tty,
                 verbose=verbose,
             )
-
-
-if __name__ == "__main__":
-    # pylint: disable=E1120
-    cli()
