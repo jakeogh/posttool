@@ -1,24 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf8 -*-
 # tab-width:4
-
-# pylint: disable=missing-docstring               # [C0111] docstrings are always outdated and wrong
-# pylint: disable=missing-module-docstring        # [C0114]
-# pylint: disable=fixme                           # [W0511] todo is encouraged
-# pylint: disable=line-too-long                   # [C0301]
-# pylint: disable=too-many-instance-attributes    # [R0902]
-# pylint: disable=too-many-lines                  # [C0302] too many lines in module
-# pylint: disable=invalid-name                    # [C0103] single letter var names, name too descriptive
-# pylint: disable=too-many-return-statements      # [R0911]
-# pylint: disable=too-many-branches               # [R0912]
-# pylint: disable=too-many-statements             # [R0915]
-# pylint: disable=too-many-arguments              # [R0913]
-# pylint: disable=too-many-nested-blocks          # [R1702]
-# pylint: disable=too-many-locals                 # [R0914]
-# pylint: disable=too-few-public-methods          # [R0903]
-# pylint: disable=no-member                       # [E1101] no member for base
-# pylint: disable=attribute-defined-outside-init  # [W0201]
-# pylint: disable=too-many-boolean-expressions    # [R0916] in if statement
+# pylint: disable=no-member # sh
 from __future__ import annotations
 
 import os
@@ -51,7 +34,7 @@ def cli(
     paths: tuple[str, ...],
     verbose_inf: bool,
     dict_output: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ) -> None:
     tty, verbose = tv(
         ctx=ctx,
@@ -76,7 +59,10 @@ def cli(
             elif path_file_type == "image":
                 # curl -F'file=@yourfile.png' http://0x0.st
                 result = sh.curl(
-                    "-F", f"file=@{path.as_posix()}", "http://0x0.st", _err=sys.stdout
+                    "-F",
+                    f"file=@{path.as_posix()}",
+                    "http://0x0.st",
+                    _err=sys.stdout,
                 )
 
             output(
